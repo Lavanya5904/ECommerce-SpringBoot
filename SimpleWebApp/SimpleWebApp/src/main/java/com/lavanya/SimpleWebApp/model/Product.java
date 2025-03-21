@@ -1,10 +1,7 @@
 package com.lavanya.SimpleWebApp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,26 +13,28 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String desc;
+    private String description;
     private String brand;
     private BigDecimal price;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
     private String category;
     private Date releaseDate;
-    private boolean available;
+    private Boolean product_available;
     private int quantity;
-
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
     public Product(){}
 
     public Product(int id, String name, String desc, String brand, BigDecimal price, String category, Date releaseDate, boolean available, int quantity) {
         this.id = id;
         this.name = name;
-        this.desc = desc;
+        this.description = desc;
         this.brand = brand;
         this.price = price;
         this.category = category;
         this.releaseDate = releaseDate;
-        this.available = available;
+        this.product_available = available;
         this.quantity = quantity;
     }
 
@@ -48,7 +47,45 @@ public class Product {
     }
 
     public String getDesc() {
-        return desc;
+        return description;
+    }
+
+    public Product(String imageName, String imageType, byte[] imageData) {
+        this.imageName = imageName;
+        this.imageType = imageType;
+        this.imageData = imageData;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public boolean isProduct_available() {
+        return product_available;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
     }
 
     public String getBrand() {
@@ -67,8 +104,16 @@ public class Product {
         return releaseDate;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setProduct_available(boolean product_available) {
+        this.product_available = product_available;
+    }
+
+    public Product(boolean product_available) {
+        this.product_available = product_available;
     }
 
     public int getQuantity() {
@@ -84,7 +129,7 @@ public class Product {
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.description = description;
     }
 
     public void setBrand(String brand) {
@@ -104,7 +149,7 @@ public class Product {
     }
 
     public void setAvailable(boolean available) {
-        this.available = available;
+        this.product_available = available;
     }
 
     public void setQuantity(int quantity) {
