@@ -17,6 +17,7 @@ const Product = () => {
       try {
         const response = await axios.get(
           `http://localhost:8080/api/product/${id}`
+
         );
         setProduct(response.data);
         if (response.data.imageName) {
