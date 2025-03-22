@@ -64,7 +64,7 @@ const Cart = () => {
   const handleIncreaseQuantity = (itemId) => {
     const newCartItems = cartItems.map((item) => {
       if (item.id === itemId) {
-        if (item.quantity < item.stockQuantity) {
+        if (item.quantity < item.quantity) {
           return { ...item, quantity: item.quantity + 1 };
         } else {
           alert("Cannot add more than available stock");
@@ -95,9 +95,9 @@ const Cart = () => {
     try {
       for (const item of cartItems) {
         const { imageUrl, imageName, imageData, imageType, quantity, ...rest } = item;
-        const updatedStockQuantity = item.stockQuantity - item.quantity;
+        const updatedquantity = item.quantity - item.quantity;
   
-        const updatedProductData = { ...rest, stockQuantity: updatedStockQuantity };
+        const updatedProductData = { ...rest, quantity: updatedquantity };
         console.log("updated product data", updatedProductData)
   
         const cartProduct = new FormData();
